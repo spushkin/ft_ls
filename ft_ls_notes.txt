@@ -1,0 +1,134 @@
+ft_ls is first Unix project!
+ls displays the list of files inside a directory or information about a file.
+
+ls -1   // one file per line followed by a newline
+ls -l   // for "long display" + ls -l name_of_file
+ls -t   // sorts by last modification date
+ls -r   // makes it reverse
+ls -R   // recursive "ls" meaning ls from a directory as well as all the sub directory included in it.
+ls -a   // ls all which displays every files including hidden files i.e. file names beginning by a dot.
+
+You have to manage a lot of file types (all of them are described in the MAN - "man ls"):
+b     Block special file.
+c     Character special file.
+d     Directory.
+l     Symbolic link.
+s     Socket link.
+p     FIFO. ("named pipe" files)
+-     Regular file.
+
+> manage permissions
+> manage "major and minor device number"
+> manage file type "b" and "c" which only exists in /dev (these types are specific to devices).
+> ls -R /usr (usr is a very crazy directory - it's too big)
+> bonus flags: -g, -d, -u
+> optimised code:
+        - did you choose the right data structures?
+        - are you using the right sorting algorithm?
+        - is it CPU efficient?
+        - memory efficient etc.
+
+
+Learn some new functions, for example :
+◦ opendir / readdir / closedir
+◦ stat / lstat
+◦ getpwuid / getgrgid
+◦ time / ctime
+◦ readlink
+◦ perrror / strerror
+
+
+Resources:
+- https://www.go4expert.com/articles/developing-linux-utility-ls-c-t27426/
+- http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/bin/ls/
+- https://hackernoon.com/speedrunning-code-the-3-things-i-re-learnt-while-recoding-a-basic-ls-in-c-d559b0f1a92b
+- https://www.lifewire.com/uses-of-linux-ls-command-4054227
+
+- ACL https://www.geeksforgeeks.org/access-control-listsacl-linux/
+
+- http://man7.org/linux/man-pages/man1/ls.1.html
+- http://stackoverflow.com/questions/4674006/set-specific-bit-in-byte
+- https://stackoverflow.com/questions/1022957/getting-terminal-width-in-c
+
+==================================================
+total 11
+drwxr-xr-x       3 ROOT   SYS1    0 Mar 12 19:32 tmp
+drwxrwxrwx       4 ROOT   SYS1    0 Mar 12 19:32 usr
+drwxr-xr-x       2 ROOT   SYS1    0 Mar 12 19:32 bin
+-rwxr--r--       1 ROOT   SYS1  572 Mar 12 19:32 foo
+-rwxr--r--       1 ROOT   SYS1  640 Mar 12 19:33 abc
+
+total 11
+indicates the total number of file system blocks occupied by files in the directory 
+(in 512-byte chunks or 1024-bytes if –k option is used).
+
+The Long Format
+The following information is displayed for each file: 
+- mode, 
+- number of links, 
+- owner (though not for -g), 
+- group, 
+- size in bytes, 
+- time of last modification (“mmm dd HH:MM”), 
+- and the pathname.
+==================================================
+
+Libft
+1) a new folder for printf f-ns.
+2) libft new f-ns:
+- ft_any.c
+- ft_count_digits.c
+- ft_count_if.c
+- ft_countdown.c
+- ft_get_binary.c
+- ft_is_sort.c
+- ft_lstswap.c
+- ft_map.c
+- ft_max.c
+- ft_min.c
+- ft_putnchar.c
+- ft_putstr_free.c
+- ft_swap.c
+- ft_wcharlen.c
+- get_next_line.c
+
+==================================================
+
+Solution:
+1. List a repertory
+• Write a program that uses the opendir, readdir and closedir functions to open
+a folder and list the names of its files on the standard output.
+2. Get a file’s data
+• Write a program which takes a file as a parameter and uses, among others, the stat
+function to get the file’s data and display them on screen.
+• You will have to use several functions, listed at the top of this pdf, to interpret
+properly the data returned by the stat function!
+
+
+1) parsing f-n: Detect flag, it should be '-' sign + options: "alRrtdG1Ss" + handle errors
+
+-S      Sort files by size
+-s      Display the number of file system blocks actually used by each file, in units of 512 bytes, where partial units 
+        are rounded up to the next integer value.
+-G      Enable colorized output.
+-d      Directories are listed as plain files (not searched recursively).
+-1      (The numeric digit ``one''.)  Force output to be one entry per line.
+
+2) init_files_list f-n: add new file in the list + sort tab according to f-n
+
+3) display_all f-n: 
+        display full path to folder
+        read folder content
+        print list ordered as specified by user: sort, display basic / detailed list
+            detailed list with -l option
+                get row size
+                display list items: 
+                    display chmod --> get file type
+                    display time
+                    display name
+                    read link
+        free list 
+
+        
+
+
