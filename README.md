@@ -1,5 +1,5 @@
 # 42_ft_ls
-This project will make you recode the command “ls”
+The recreation of the UNIX command “ls” in C programming language.
 
 
 Basic functions:
